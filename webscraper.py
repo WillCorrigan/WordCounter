@@ -7,16 +7,34 @@ soup = BeautifulSoup(page.content, "html.parser")
 block = soup.find_all('div', {'class': 'solid'})
 poster = soup.find_all('div', {'class': 'fpost-username'})
 posted = soup.find_all('article', {'class': ['section','forumPost']})
+filtered = []
+usernames = []
 
 
 
 for post in soup.findAll('article', {'class': ['section','forumPost']}):
 	for div in soup.find_all("div", {'class':'quote'}):
 		div.decompose()
-		print soup
-	# print post.text.encode("utf-8")
+	filtered.append(post.text.encode("utf-8").strip())
 
 
+
+for i in poster:
+	usernames.append(i.findAll('span')[0].text)
+
+print usernames[0]
+print filtered[0]
+
+posterDict = dict(zip(usernames, filtered))
+print(posterDict)
+
+
+
+
+
+
+# for poster in soup.findAll('div', {'class': 'fpost-username'}):
+# 	print poster
 
 
 
@@ -27,17 +45,12 @@ for post in soup.findAll('article', {'class': ['section','forumPost']}):
 # 		div.decompose()
 # 	print post.text.encode("utf-8")
 
-# for poster in soup.find('div', {'class': 'fpost-username'}).find('span', recursive=False):
-# 	print poster.encode("utf-8")
 
 
 
 
 
-# posters = {
-# 'name':'Koshi', 
-# 'post':'test post'
-# }
+
 
 
 # for post in content.findAll('article', {'class': ['section','forumPost']}):
