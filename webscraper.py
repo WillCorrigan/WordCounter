@@ -4,11 +4,15 @@ import requests
 import itertools
 import sys
 from collections import Counter
-from multiprocessing  import Pool
+from threading import Thread
 
+
+############################## Cluster Fuck Begins Here ###################################
 
 filtered = []
 usernames = []
+
+############################## Iterates Through Every TL Mafia Page - Adds to Lists ###########################
 
 for i in range(262):
 	url = 'https://tl.net/forum/mafia/547420-72-24-midnight-sun-mafia?page=' + str(i)
@@ -26,18 +30,17 @@ for i in range(262):
 		filtered.append(post.text.encode("utf-8").strip())
 
 
-
 	for i in poster:
 		usernames.append(i.findAll('span')[0].text)
 
+
+########################### Zips Lists Into One List ##########################################
 
 zipper = zip(usernames, filtered)
 splitList = []
 
 
-
-
-
+################################# Get the Word Count of an Inputted User #########################
 
 def WordCount(username):
 	for a in range(len(zipper)):
