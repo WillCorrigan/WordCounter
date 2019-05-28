@@ -1,5 +1,7 @@
+#!/usr/bin/python
 from bs4 import BeautifulSoup
 import requests
+import itertools
 
 url = 'https://tl.net/forum/mafia/547420-72-24-midnight-sun-mafia?page=259'
 page = requests.get(url, timeout=5)
@@ -9,7 +11,6 @@ poster = soup.find_all('div', {'class': 'fpost-username'})
 posted = soup.find_all('article', {'class': ['section','forumPost']})
 filtered = []
 usernames = []
-
 
 
 for post in soup.findAll('article', {'class': ['section','forumPost']}):
@@ -22,11 +23,18 @@ for post in soup.findAll('article', {'class': ['section','forumPost']}):
 for i in poster:
 	usernames.append(i.findAll('span')[0].text)
 
-print usernames[0]
-print filtered[0]
 
-posterDict = dict(zip(usernames, filtered))
-print(posterDict)
+zipper = zip(usernames, filtered)
+counter = []
+word_counting = tuple(counter)
+
+def WordCount(username):
+	for a in range(len(zipper)):
+		if zipper[a][0] == username:
+			# print zipper[a][1]
+			counter.append(zipper[a][1])
+	print counter
+WordCount('Koshi')
 
 
 
