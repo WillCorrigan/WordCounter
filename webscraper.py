@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import requests
 import itertools
+from collections import Counter
 
 url = 'https://tl.net/forum/mafia/547420-72-24-midnight-sun-mafia?page=259'
 page = requests.get(url, timeout=5)
@@ -25,18 +26,22 @@ for i in poster:
 
 
 zipper = zip(usernames, filtered)
-counter = []
-word_counting = tuple(counter)
+splitList = []
+
+
+
+
+
 
 def WordCount(username):
 	for a in range(len(zipper)):
 		if zipper[a][0] == username:
 			# print zipper[a][1]
-			counter.append(zipper[a][1])
-	print counter
+			splitList.append(str(zipper[a][1]).split())
+
+
 WordCount('Koshi')
-
-
+print splitList
 
 
 
