@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import requests
 import itertools
+import sys
 from collections import Counter
 
 url = 'https://tl.net/forum/mafia/547420-72-24-midnight-sun-mafia?page=259'
@@ -32,7 +33,6 @@ splitList = []
 
 
 
-
 def WordCount(username):
 	for a in range(len(zipper)):
 		if zipper[a][0] == username:
@@ -40,8 +40,17 @@ def WordCount(username):
 			splitList.append(str(zipper[a][1]).split())
 
 
-WordCount('Koshi')
-print splitList
+print("please type username")
+userinput = raw_input()
+WordCount(userinput)
+flat_list = []
+for sublist in splitList:
+	for item in sublist:
+		flat_list.append(item)
+print len(flat_list)
+
+
+
 
 
 
