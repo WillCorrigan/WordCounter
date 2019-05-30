@@ -14,7 +14,7 @@ usernames = []
 
 ############################## Iterates Through Every TL Mafia Page - Adds to Lists ###########################
 
-for i in range(262):
+for i in range(10):
 	url = 'https://tl.net/forum/mafia/547420-72-24-midnight-sun-mafia?page=' + str(i)
 	page = requests.get(url, timeout=5)
 	soup = BeautifulSoup(page.content, "html.parser")
