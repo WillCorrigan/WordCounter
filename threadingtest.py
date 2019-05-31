@@ -19,7 +19,7 @@ splitList = []
 ############### Functions  ##############
 
 def generate_urls():
-    for i in range(1,7):
+    for i in range(1,2):
         all_urls.append(base_url + str(i))
     
 def scrape(url):
@@ -43,12 +43,10 @@ def scrape(url):
   
     		
 
-
 def WordCount(username):
-	for a in range(0, len(zipper[0])):
-		if zipper[0][a][0] == username:
-			splitList.append(str(zipper[0][a][1]).split())
-			
+    for a in zipper[0]:
+        if a[0] == username:
+            splitList.append(str(a[1]).split())
 
 
 
@@ -65,15 +63,14 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=None) as executor:
 
 playerList = ["BloodyC0bbler", "wherebugsgo", "Koshi", "Holyflare", "VisceraEyes", "Conversion", "Jockmcplop", "iGrok", "raynpelikoneet", "ruXxar", "disformation", "Artanis[Xp]", "Calix"]
 
-for playerName in range(len(playerList)):
-	# print("please type username")
-	userinput = playerList[playerName]
-	WordCount(userinput)
+for playerName in playerList:
+	WordCount(playerName)
 	flat_list = []
 	for sublist in splitList:
 		for item in sublist:
 			flat_list.append(item)
-	print(playerList[playerName])		
+	print(playerName)
+	print(flat_list)		
 	print(len(flat_list))
 	splitList = []
 	flat_list = []
