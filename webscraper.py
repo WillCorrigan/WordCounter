@@ -14,13 +14,14 @@ usernames = []
 
 ############################## Iterates Through Every TL Mafia Page - Adds to Lists ###########################
 
-for i in range(10):
+for i in range(1, 267):
 	url = 'https://tl.net/forum/mafia/547420-72-24-midnight-sun-mafia?page=' + str(i)
 	page = requests.get(url, timeout=5)
 	soup = BeautifulSoup(page.content, "html.parser")
 	block = soup.find_all('div', {'class': 'solid'})
 	poster = soup.find_all('div', {'class': 'fpost-username'})
 	posted = soup.find_all('article', {'class': ['section','forumPost']})
+	print(page.status_code, page.url)
 
 
 
@@ -36,7 +37,7 @@ for i in range(10):
 
 ########################### Zips Lists Into One List ##########################################
 
-zipper = zip(usernames, filtered)
+zipper = list(zip(usernames, filtered))
 splitList = []
 
 
@@ -49,15 +50,19 @@ def WordCount(username):
 			splitList.append(str(zipper[a][1]).split())
 
 
+playerList = ["BloodyC0bbler", "wherebugsgo", "Koshi", "Holyflare", "VisceraEyes", "Conversion", "Jockmcplop", "iGrok", "raynpelikoneet", "ruXxar", "disformation", "Artanis[Xp]", "Calix"]
 
-print("please type username")
-userinput = raw_input()
-WordCount(userinput)
-flat_list = []
-for sublist in splitList:
-	for item in sublist:
-		flat_list.append(item)
-print len(flat_list)
+for playerName in range(len(playerList)):
+	userinput = playerList[playerName]
+	WordCount(userinput)
+	flat_list = []
+	for sublist in splitList:
+		for item in sublist:
+			flat_list.append(item)
+	print(playerList[playerName])	
+	print(len(flat_list))
+	splitList = []
+	flat_list = []
 
 
 
